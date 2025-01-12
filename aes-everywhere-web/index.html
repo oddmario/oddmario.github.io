@@ -32,7 +32,11 @@
         <script>
             const decrypt = function() {
                 const encKey = document.querySelector("#encKeyInput").value;
-                const encInput = document.querySelector("#encStringInput").value;
+                var encInput = document.querySelector("#encStringInput").value;
+
+                if(document.querySelector("#encIsUrlEncoded").checked) {
+                    encInput = decodeURIComponent(encInput);
+                }
 
                 try {
                     const decResult = AES256.decrypt(encInput, encKey);
@@ -48,7 +52,11 @@
                 try {
                     const encResult = AES256.encrypt(plainInput, encKey);
 
-                    document.querySelector("#encResult").value = encResult;
+                    if(!docuemnt.querySelector("#urlEncResult").checked) {
+                        document.querySelector("#encResult").value = encResult;
+                    } else {
+                        document.querySelector("#encResult").value = encodeURIComponent(encResult);
+                    }
                 } catch(err) {}
             };
         </script>
@@ -71,6 +79,13 @@
             <div class="mb-3">
                 <label for="decResult" class="form-label">Decrypted result</label>
                 <textarea readonly="" class="form-control" id="decResult" rows="6"></textarea>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="encIsUrlEncoded">
+                <label class="form-check-label" for="encIsUrlEncoded">
+                    The encrypted string is URL-encoded
+                </label>
             </div>
 
             <div class="d-grid gap-2">
@@ -96,6 +111,13 @@
             <div class="mb-3">
                 <label for="encResult" class="form-label">Encrypted result</label>
                 <textarea readonly="" class="form-control" id="encResult" rows="6"></textarea>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="urlEncResult">
+                <label class="form-check-label" for="urlEncResult">
+                    URL-encode the result
+                </label>
             </div>
 
             <div class="d-grid gap-2">
