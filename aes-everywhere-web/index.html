@@ -52,7 +52,7 @@
                 try {
                     const encResult = AES256.encrypt(plainInput, encKey);
 
-                    if(!docuemnt.querySelector("#urlEncResult").checked) {
+                    if(!document.querySelector("#urlEncResult").checked) {
                         document.querySelector("#encResult").value = encResult;
                     } else {
                         document.querySelector("#encResult").value = encodeURIComponent(encResult);
