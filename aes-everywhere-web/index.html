@@ -31,7 +31,7 @@
         <!-- JS includes -->
         <script>
             const decrypt = function() {
-                const encKey = document.querySelector("#encKeyInput").value;
+                const decKey = document.querySelector("#decKeyInput").value;
                 var encInput = document.querySelector("#encStringInput").value;
 
                 if(document.querySelector("#encIsUrlEncoded").checked) {
@@ -39,14 +39,14 @@
                 }
 
                 try {
-                    const decResult = AES256.decrypt(encInput, encKey);
+                    const decResult = AES256.decrypt(encInput, decKey);
 
                     document.querySelector("#decResult").value = decResult;
                 } catch(err) {}
             };
 
             const encrypt = function() {
-                const encKey = document.querySelector("#encKeyInput2").value;
+                const encKey = document.querySelector("#encKeyInput").value;
                 const plainInput = document.querySelector("#plainStringInput").value;
 
                 try {
@@ -72,8 +72,8 @@
             </div>
 
             <div class="mb-3">
-                <label for="encKeyInput" class="form-label">Encryption key</label>
-                <input type="text" class="form-control" id="encKeyInput" placeholder="123@!">
+                <label for="decKeyInput" class="form-label">Decryption key</label>
+                <input type="text" class="form-control" id="decKeyInput" placeholder="123@!">
             </div>
 
             <div class="mb-3">
@@ -104,8 +104,8 @@
             </div>
 
             <div class="mb-3">
-                <label for="encKeyInput2" class="form-label">Encryption key</label>
-                <input type="text" class="form-control" id="encKeyInput2" placeholder="123@!">
+                <label for="encKeyInput" class="form-label">Encryption key</label>
+                <input type="text" class="form-control" id="encKeyInput" placeholder="123@!">
             </div>
 
             <div class="mb-3">
